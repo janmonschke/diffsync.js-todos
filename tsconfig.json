@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "files": [
+        "client/index.ts",
+        "client/item-view.ts",
+        "client/observer-collection-view.ts",
+        "client/observer-view.ts",
+        "client/support.ts",
+        "client/view.ts",
+        "cust_typings/cradle/cradle.d.ts",
+        "cust_typings/database/database.d.ts",
+        "cust_typings/diffsync-couchdb/diffsync-couchdb.d.ts",
+        "data-adapter.ts",
+        "database.ts",
+        "server.ts",
+        "typings/bluebird/bluebird.d.ts",
+        "typings/handlebars/handlebars.d.ts",
+        "typings/hapi/hapi.d.ts",
+        "typings/node/node.d.ts",
+        "typings/socket.io/socket.io.d.ts",
+        "typings/tsd.d.ts"
+    ],
+    "exclude": []
+}

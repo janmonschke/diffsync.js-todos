@@ -1,8 +1,13 @@
-var cradle = require('cradle');
+/// <reference path='typings/node/node.d.ts' />
+/// <reference path='cust_typings/cradle/cradle.d.ts' />
+
+import cradle = require('cradle');
+
 cradle.setup({
     raw: false,
     cache: false,
     protocol: 'https',
+
     host: process.env.db_host,
     port: process.env.db_port,
     auth: {
@@ -10,6 +15,7 @@ cradle.setup({
         password: process.env.db_password
     }
 });
-module.exports = function (databaseName) {
+
+module.exports = function(databaseName: string): cradle.CradleDatabase {
     return (new cradle.Connection()).database(databaseName);
 };
