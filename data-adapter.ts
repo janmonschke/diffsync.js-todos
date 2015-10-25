@@ -5,7 +5,7 @@
 import CouchDBDataAdapter = require('diffsync-couchdb');
 import createDatabase = require('./database');
 
-module.exports = function(databaseName: string): diffsyncCouchDb.diffsyncCouchDb {
+export = function(databaseName: string): diffsyncCouchDb.diffsyncCouchDb {
     let database: cradle.Database = createDatabase(databaseName);
     return new CouchDBDataAdapter(database);
 };

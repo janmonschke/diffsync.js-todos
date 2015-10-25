@@ -1,31 +1,20 @@
-/// <reference path='../typings/backbone/backbone.d.ts' />
-/// <reference path='../typings/underscore/underscore.d.ts' />
-/// <reference path='../typings/jquery/jquery.d.ts' />
-
-/*
-  Based on https://github.com/tiagorg/marionette-vdom/blob/master/vdom-mixin.js which is licensed under MIT license with Copyright (c) 2015, Tiago Garcia
-*/
-
-import Backbone = require('backbone');
-import _ = require('underscore');
-import $ = require('jquery');
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = require('jquery');
 var diff = require('virtual-dom/diff');
 var patch = require('virtual-dom/patch');
 var html_to_dom = require('html-to-vdom');
-let convertHTML = html_to_dom({
+var convertHTML = html_to_dom({
     VNode: require('virtual-dom/vnode/vnode'),
     VText: require('virtual-dom/vnode/vtext')
 });
-import support = require('./support');
-
+var support = require('./support');
 Backbone.$ = $;
-
 module.exports = Backbone.View.extend({
-    initialize: function(model) {
+    initialize: function (model) {
         this.model = model;
     },
-
-    delegateEvents: function(events) {
+    delegateEvents: function (events) {
         var key, newKey, oldValue;
         this.events = this.events || events;
         for (key in this.events) {
@@ -40,24 +29,17 @@ module.exports = Backbone.View.extend({
         }
         return Backbone.View.prototype.delegateEvents.call(this, this.events);
     },
-
-    setElement: function() {
+    setElement: function () {
         Backbone.View.prototype.setElement.apply(this, arguments);
-
         if (this.el) {
-            this.rootTemplate = _.template(
-                this.el.outerHTML.replace(/>(.|\n)*<\//, '><%= content %></')
-            );
+            this.rootTemplate = _.template(this.el.outerHTML.replace(/>(.|\n)*<\//, '><%= content %></'));
         }
-
         return this;
     },
-
-    getHTML: function() {
+    getHTML: function () {
         return this.template(this.model).trim();
     },
-
-    render: function() {
+    render: function () {
         var html = this.getHTML();
         var newVirtualEl = convertHTML(this.rootTemplate({
             content: html
@@ -65,14 +47,14 @@ module.exports = Backbone.View.extend({
         if (this.virtualEl) {
             var patches = diff(this.virtualEl, newVirtualEl);
             patch(this.el, patches);
-        } else {
+        }
+        else {
             this.$el.html(html);
         }
         this.virtualEl = newVirtualEl;
         return this;
     },
-
-    remove: function() {
+    remove: function () {
         this.virtualEl = this.rootTemplate = null;
         return Backbone.View.prototype.remove.apply(this, arguments);
     }
