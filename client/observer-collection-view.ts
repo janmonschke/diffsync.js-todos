@@ -18,14 +18,14 @@ let CollectionView = ObserverView.extend({
     },
 
     appendItem: function(item) {
-        var itemView = new this.ViewClass(item);
+        let itemView = new this.ViewClass(item);
         this.items.push(itemView);
         itemView.collection = this.model;
         this.$el.append(itemView.render().el);
     },
 
     removeItem: function(removedItem) {
-        var viewFromItem = _.find(this.items, function(item: any) {
+        let viewFromItem = _.find(this.items, function(item: any) {
             return item.model === removedItem;
         });
 
@@ -41,8 +41,8 @@ let CollectionView = ObserverView.extend({
 
     interpretSlice: function(slice) {
         if (slice.addedCount) {
-            for (var i = 0; i < slice.addedCount; i++) {
-                var newItem = this.model[slice.index + i];
+            for (let i = 0; i < slice.addedCount; i++) {
+                let newItem = this.model[slice.index + i];
                 this.appendItem(newItem);
             }
         }

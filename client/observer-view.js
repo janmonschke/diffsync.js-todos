@@ -38,7 +38,9 @@ exports = View.extend({
 });
 if (!support.OBSERVE) {
     var pollForChanges = function () {
-        Platform.performMicrotaskCheckpoint();
+        var is_contained = Object.keys(global).filter(function (e) { return e == 'Platform'; }).length === 0;
+        if (is_contained)
+            global['Platform'].performMicrotaskCheckpoint();
     };
     window.addEventListener('click', pollForChanges);
     window.addEventListener('touchend', pollForChanges);

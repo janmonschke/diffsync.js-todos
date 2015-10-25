@@ -59,9 +59,10 @@ exports = View.extend({
 // If there is no support, activate polling
 // see: https://github.com/polymer/observe-js#about-delivery-of-changes
 if (!support.OBSERVE) {
-    var pollForChanges = function() {
+    let pollForChanges = function() {
         /* global Platform */
-        Platform.performMicrotaskCheckpoint();
+        const is_contained: boolean = Object.keys(global).filter(function(e) { return e == 'Platform'; }).length === 0;
+        if (is_contained) global['Platform'].performMicrotaskCheckpoint();
     };
 
     // var POLL_INTERVAL_TIMEOUT = 100;
