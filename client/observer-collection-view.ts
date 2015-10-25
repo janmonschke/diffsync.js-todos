@@ -25,7 +25,7 @@ let CollectionView = ObserverView.extend({
     },
 
     removeItem: function(removedItem) {
-        var viewFromItem = _.find(this.items, function(item) {
+        var viewFromItem = _.find(this.items, function(item: any) {
             return item.model === removedItem;
         });
 

@@ -12,7 +12,7 @@ declare module diffsync {
     }
 
     export interface IClient extends NodeJS.EventEmitter {
-        new (socket: any, room: string, diffOptions: {});
+        new (socket: any, room: string, diffOptions?: {});
         socket: any;
         room: string;
         syncing: boolean;
