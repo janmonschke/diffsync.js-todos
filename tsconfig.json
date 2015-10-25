@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**"
+    ],
+    "files": [
+        "cust_typings/cradle/cradle.d.ts",
+        "cust_typings/database/database.d.ts",
+        "cust_typings/diffsync-couchdb/diffsync-couchdb.d.ts",
+        "cust_typings/diffsync/diffsync.d.ts",
+        "data-adapter.ts",
+        "database.ts",
+        "server.ts",
+        "typings/backbone/backbone-global.d.ts",
+        "typings/backbone/backbone.d.ts",
+        "typings/bluebird/bluebird.d.ts",
+        "typings/handlebars/handlebars.d.ts",
+        "typings/hapi/hapi.d.ts",
+        "typings/jquery/jquery.d.ts",
+        "typings/node/node.d.ts",
+        "typings/observe-js/observe-js.d.ts",
+        "typings/socket.io-client/socket.io-client.d.ts",
+        "typings/socket.io/socket.io.d.ts",
+        "typings/tsd.d.ts",
+        "typings/underscore/underscore.d.ts"
+    ],
+    "exclude": []
+}
