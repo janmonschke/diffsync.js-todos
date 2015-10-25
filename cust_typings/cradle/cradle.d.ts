@@ -2,23 +2,23 @@ declare var cradle: cradle.cradle;
 
 declare module cradle {
     export interface cradle {
-        new(): cradle;
+        new (): cradle;
         host: string;
         port: number;
         auth: any;
         ca: any;
-        options: CradleOptions;
-        setup: (settings: CradleOptions) => cradle;
+        options: Options;
+        setup: (settings: Options) => cradle;
         connect: (...arguments: any[]) => void;
-        rawRequest: (options: CradleOptions, callback: any) => any;
+        rawRequest: (options: Options, callback: any) => any;
         close: () => void;
-        request: (options: CradleOptions, callback: any) => any;
-        Connection: CradleConnection;
+        request: (options: Options, callback: any) => any;
+        Connection: Connection;
         escape: (id: string) => string;
         merge: (target: {}, ...arguments: any[]) => {};
     }
 
-    export interface CradleOptions {
+    export interface Options {
         cache?: boolean;
         raw?: boolean;
         secure?: boolean;
@@ -35,20 +35,48 @@ declare module cradle {
         };
     }
 
-    export interface CradleConnection {
-        new(): CradleConnection;
-        database: (name: string) => CradleDatabase;
+    export interface Connection {
+        new (): Connection;
+        database(name: string): Database;
         databases: (callback: any) => void;
         config: (callback: any) => void;
         info: (callback: any) => void;
         stats: (callback: any) => void;
         activeTasks: (callback: any) => void;
         uuids: (count: number, callback: any) => void;
-        replicate: (options: CradleOptions, callback: any) => void;
+        replicate: (options: Options, callback: any) => void;
         _url: (path: string) => string;
+        request: any;
     }
 
-    export interface CradleDatabase {
+    export interface Database extends Documents {
+        new (name: string, connection: any): Database;
+        connection: any;
+        name: string;
+        cache: Cache;
+        query(options: {}, callback: Function): any /*cradle.Connection.request*/;
+        exists(callback: Function): void;
+        replicate(target: any, options: Function | {}, callback: Function): void;
+        info(callback: Function): void;
+        create(callback: Function): void;
+        destroy(callback: Function): void;
+    }
+
+    export interface Documents {
+        head(id: string, callback: Function): void;
+        get(id: any | any[], rev: any): void;
+        put(id: string, doc: {}, callback: Function): void;
+        post(doc: {}, callback: Function): void;
+        save(id?: string, rev?: string|{}, ...doc: {}[]): void;
+        _save(id: any, rev: any, doc: {} | {}[], callback: Function): void;
+        merge(id?: any, ...doc: {}[]): void;
+        _merge(id: any, doc: {} | {}[], callback: Function): void;
+        update(path: string, id?: string, options?: {}, body?: string): any;
+        remove(id: string, rev?: string): void;
+    }
+
+    export interface Cache {
+        // TODO
     }
 }
 

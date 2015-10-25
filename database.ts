@@ -16,6 +16,6 @@ cradle.setup({
     }
 });
 
-module.exports = function(databaseName: string): cradle.CradleDatabase {
+module.exports = function(databaseName: string): cradle.Database {
     return (new cradle.Connection()).database(databaseName);
 };

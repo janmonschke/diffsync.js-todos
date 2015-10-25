@@ -1,9 +1,10 @@
 var Hapi = require('hapi');
 var socket_io = require('socket.io');
-var dataAdapter = require('./data-adapter');
-var databaseName = process.env.db_name;
-var database = require('./database')(databaseName);
 var diffsync = require('diffsync');
+var dataAdapter = require('./data-adapter');
+var createDatabase = require('./database');
+var databaseName = process.env.db_name;
+var database = createDatabase(databaseName);
 var isProduction = process.env.NODE_ENV === 'production';
 var DiffSyncServer = diffsync.Server;
 var hapiServer = new Hapi.Server();

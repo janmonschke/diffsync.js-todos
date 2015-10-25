@@ -29,6 +29,7 @@
         "cust_typings/cradle/cradle.d.ts",
         "cust_typings/database/database.d.ts",
         "cust_typings/diffsync-couchdb/diffsync-couchdb.d.ts",
+        "cust_typings/diffsync/diffsync.d.ts",
         "data-adapter.ts",
         "database.ts",
         "server.ts",
