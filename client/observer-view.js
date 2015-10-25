@@ -38,7 +38,7 @@ exports = View.extend({
 });
 if (!support.OBSERVE) {
     var pollForChanges = function () {
-        var is_contained = Object.keys(global).filter(function (e) { return e == 'Platform'; }).length === 0;
+        var is_contained = Object.keys(global).filter(function (e) { return e == 'Platform'; }).length === 1;
         if (is_contained)
             global['Platform'].performMicrotaskCheckpoint();
     };
